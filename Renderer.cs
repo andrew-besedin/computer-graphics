@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 
 namespace Лаб1WpfApp1
 {
-    public class Renderer
+    public partial class Renderer
     {
 
         Matrix4x4 worldTransformation = new Matrix4x4
@@ -49,15 +49,10 @@ namespace Лаб1WpfApp1
                     {
                         var index = y1 * stride + x1 * 4;
 
-                        //rawPointer[index] = (byte)(color & 0xFF);
-                        //rawPointer[index + 1] = (byte)((color >> 8) & 0xFF);
-                        //rawPointer[index + 2] = (byte)((color >> 16) & 0xFF);
-                        //rawPointer[index + 3] = (byte)((color >> 24) & 0xFF);
-
-                        rawPointer[index] = (byte)(0xFF);
-                        rawPointer[index + 1] = (byte)(0xFF);
-                        rawPointer[index + 2] = (byte)(0xFF);
-                        rawPointer[index + 3] = (byte)(0xFF);
+                        rawPointer[index] = (byte)(color & 0xFF);
+                        rawPointer[index + 1] = (byte)((color >> 8) & 0xFF);
+                        rawPointer[index + 2] = (byte)((color >> 16) & 0xFF);
+                        rawPointer[index + 3] = (byte)((color >> 24) & 0xFF);
                     }
 
                     if (x1 == x2 && y1 == y2) break;
@@ -169,7 +164,7 @@ namespace Лаб1WpfApp1
 
             List<Face> faces = obj.faces;
             int facesCount = faces.Count;
-            uint color = 0xFFFFFF;
+            uint color = 0xFFFFFFFF;
 
             for (int i = 0; i < facesCount; i++)
             {
@@ -193,7 +188,7 @@ namespace Лаб1WpfApp1
                         continue;
                     if (v0.Z > v0.W && v1.Z > v1.W)
                         continue;
-                    if (v0.Z < 0 && v1.Z < 0)
+                    if (v0.Z < 0 || v1.Z < 0)
                         continue;
 
 

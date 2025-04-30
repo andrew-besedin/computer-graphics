@@ -42,38 +42,12 @@ namespace Лаб1WpfApp1
 
             var bitmap = new WriteableBitmap((int)width, (int)height, 96, 96, PixelFormats.Bgra32, null);
 
-
-
-
-            //var graphics = Graphics.FromImage(bitmap);
-            //graphics.Clear(Color.Black);
-
             if (obj != null)
             {
-                renderer.render(bitmap, obj);
+                renderer.RenderSolid(bitmap, obj);
             }
 
             image.Source = bitmap;
-
-            //bitmap.Save("myimg.png", ImageFormat.Png);
-
-            //pictureBox1.Refresh();
-            //e.Graphics.DrawImage(bitmap, 0, 0);
-
-            //pictureBox1.Size = new Size(210, 110);
-
-            //Bitmap flag = new Bitmap(200, 100);
-            //Graphics flagGraphics = Graphics.FromImage(flag);
-            //int red = 0;
-            //int white = 11;
-            //while (white <= 100)
-            //{
-            //    flagGraphics.FillRectangle(Brushes.Red, 0, red, 200, 10);
-            //    flagGraphics.FillRectangle(Brushes.White, 0, white, 200, 10);
-            //    red += 20;
-            //    white += 20;
-            //}
-            //pictureBox1.Image = flag;
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

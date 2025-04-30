@@ -18,3 +18,4 @@ D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1
 D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Debug\net8.0-windows\Лаб1WpfApp1.pdb
 D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Debug\net8.0-windows\Лаб1WpfApp1.genruntimeconfig.cache
 D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Debug\net8.0-windows\ref\Лаб1WpfApp1.dll
+D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Debug\net8.0-windows\Лаб1WpfApp1.sourcelink.json

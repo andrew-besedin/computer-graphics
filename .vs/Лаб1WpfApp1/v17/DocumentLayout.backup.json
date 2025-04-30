@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\renderersolid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:renderersolid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\renderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,6 +17,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\\u043B\u0430\u04311wpfapp1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:\u043B\u0430\u04311wpfapp1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\zbuffer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:zbuffer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|d:\\\u0443\u043D\u0438\u0432\u0435\u0440 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0430\u043A\u0433\\\u043B\u0430\u04311wpf\\\u043B\u0430\u04311wpfapp1\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF1F1EB5-861E-46AA-A46C-36B14545C439}|\u041B\u0430\u04311WpfApp1.csproj|solutionrelative:parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,12 +38,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{34c7837f-3b3a-449c-bdf0-bdad86cbaf4a}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "\u041B\u0430\u04311WpfApp1",
+              "Title": "Zbuffer.cs",
+              "DocumentMoniker": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\Zbuffer.cs",
+              "RelativeDocumentMoniker": "Zbuffer.cs",
+              "ToolTip": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\Zbuffer.cs",
+              "RelativeToolTip": "Zbuffer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T11:42:18.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RendererSolid.cs",
+              "DocumentMoniker": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\RendererSolid.cs",
+              "RelativeDocumentMoniker": "RendererSolid.cs",
+              "ToolTip": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\RendererSolid.cs",
+              "RelativeToolTip": "RendererSolid.cs",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAKsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T10:23:06.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "\u041B\u0430\u04311WpfApp1.csproj",
               "DocumentMoniker": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\\u041B\u0430\u04311WpfApp1.csproj",
               "RelativeDocumentMoniker": "\u041B\u0430\u04311WpfApp1.csproj",
               "ToolTip": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\\u041B\u0430\u04311WpfApp1.csproj",
@@ -46,38 +88,34 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Renderer.cs",
               "DocumentMoniker": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\Renderer.cs",
               "RelativeDocumentMoniker": "Renderer.cs",
               "ToolTip": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\Renderer.cs",
               "RelativeToolTip": "Renderer.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAASwNIAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-28T17:21:16.162Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Parser.cs",
               "DocumentMoniker": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\Parser.cs",
               "RelativeDocumentMoniker": "Parser.cs",
               "ToolTip": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\Parser.cs",
               "RelativeToolTip": "Parser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-28T17:18:58.26Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -89,13 +127,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "D:\\\u0423\u043D\u0438\u0432\u0435\u0440 \u042D\u043A\u0441\u043F\u043E\u0440\u0442\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u0410\u041A\u0413\\\u041B\u0430\u04311WPF\\\u041B\u0430\u04311WpfApp1\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAI8AAAAAAAAAAAAQwJsAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAmwC4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-28T17:09:43.741Z",
               "EditorCaption": ""
