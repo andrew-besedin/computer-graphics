@@ -11,6 +11,22 @@ namespace Лаб1WpfApp1
     public partial class Renderer
     {
 
+        private void ClearBitmap(IntPtr bitmapDataPtr, int width, int height)
+        {
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    unsafe
+                    {
+                        uint* rawPointer = (uint*)bitmapDataPtr;
+                        var index = i * width + j;
+                        rawPointer[index] = 0x0;
+                    }
+                }
+            }
+        }
+
         Matrix4x4 worldTransformation = new Matrix4x4
         (
             1, 0, 0, 0,
@@ -125,6 +141,8 @@ namespace Лаб1WpfApp1
             bitmap.Lock();
 
             IntPtr bitmapDataPtr = bitmap.BackBuffer;
+
+            ClearBitmap(bitmapDataPtr, width, height);
 
             int stride = bitmap.BackBufferStride;
 

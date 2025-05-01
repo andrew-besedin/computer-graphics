@@ -26,7 +26,7 @@ namespace Лаб1WpfApp1
             Vector4 min = v0;
             Vector4 mid = v1;
             Vector4 max = v2;
-            // Correct min, mid and max
+
             if (mid.Y < min.Y)
             {
                 (min, mid) = (mid, min);
@@ -42,10 +42,6 @@ namespace Лаб1WpfApp1
 
             if (min.Y == mid.Y)
             {
-                //flat top
-                //   ----
-                //   \  /
-                //    \/
                 if (mid.X < min.X)
                 {
                     (min, mid) = (mid, min);
@@ -54,10 +50,6 @@ namespace Лаб1WpfApp1
             }
             else if (max.Y == mid.Y)
             {
-                //flat bottom
-                //    /\
-                //   /  \
-                //   ----
                 if (max.X < mid.X)
                 {
                     (mid, max) = (max, mid);
@@ -70,26 +62,11 @@ namespace Лаб1WpfApp1
                 Vector4 interpolant = Vector4.Lerp(min, max, c);
                 if (interpolant.X > mid.X)
                 {
-                    //right major
-                    //    min
-                    //       
-                    // mid     interpolant
-                    //                    
-                    //  
-                    //                       max
-
                     DrawFlatBottomTriangleWithZBuffer(bitmapDataPtr, width, height, min, interpolant, mid, color, zbuffer);
                     DrawFlatTopTriangleWithZBuffer(bitmapDataPtr, width, height, mid, interpolant, max, color, zbuffer);
                 }
                 else
-                {
-                    //left major
-                    //                  min
-                    //       
-                    //      interpolant     mid
-                    //                    
-                    //  
-                    // max                      
+                {                    
                     DrawFlatBottomTriangleWithZBuffer(bitmapDataPtr, width, height, min, mid, interpolant, color, zbuffer);
                     DrawFlatTopTriangleWithZBuffer(bitmapDataPtr, width, height, interpolant, mid, max, color, zbuffer);
                 }
@@ -161,15 +138,11 @@ namespace Лаб1WpfApp1
 
             ResizeAndClearZBuffer(width, height);
 
-            // Init bitmap raw bits ptr
             bitmap.Lock();
 
             IntPtr bitmapDataPtr = bitmap.BackBuffer;
 
-            //unsafe
-            //{
-            //    Array.Fill(new Span<uint>((uint*)rawPtr, width * height), 0);
-            //}
+            ClearBitmap(bitmapDataPtr, width, height);
 
             int stride = bitmap.BackBufferStride;
 

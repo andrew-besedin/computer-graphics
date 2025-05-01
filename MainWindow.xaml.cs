@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 
 namespace Лаб1WpfApp1
 {
@@ -14,6 +15,18 @@ namespace Лаб1WpfApp1
     {
         Obj? obj = null;
         Renderer renderer = new Renderer();
+
+        enum DrawingState
+        {
+            carcass,
+            solid,
+            phong,
+        }
+
+        DrawingState drawingState = DrawingState.carcass;
+
+        WriteableBitmap bitmap;
+
 
         public MainWindow()
         {
@@ -37,14 +50,22 @@ namespace Лаб1WpfApp1
 
         private void Draw()
         {
-            var width = grid.ActualWidth;
-            var height = grid.ActualHeight;
+            //var width = grid.ActualWidth;
+            //var height = grid.ActualHeight;
 
-            var bitmap = new WriteableBitmap((int)width, (int)height, 96, 96, PixelFormats.Bgra32, null);
 
             if (obj != null)
             {
-                renderer.RenderSolid(bitmap, obj);
+                if (drawingState == DrawingState.carcass)
+                {
+                    renderer.render(bitmap, obj);
+                } else if (drawingState == DrawingState.solid)
+                {
+                    renderer.RenderSolid(bitmap, obj);
+                } else if (drawingState == DrawingState.phong)
+                {
+                    renderer.RenderPhong(bitmap, obj);
+                }
             }
 
             image.Source = bitmap;
@@ -115,6 +136,18 @@ namespace Лаб1WpfApp1
             {
                 renderer.cameraSphereRadius += 100;
             }
+            if (e.Key == Key.D1)
+            {
+                drawingState = DrawingState.carcass;
+            }
+            if (e.Key == Key.D2)
+            {
+                drawingState = DrawingState.solid;
+            }
+            if (e.Key == Key.D3)
+            {
+                drawingState = DrawingState.phong;
+            }
 
             this.Draw();
         }
@@ -124,6 +157,11 @@ namespace Лаб1WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var width = grid.ActualWidth;
+            var height = grid.ActualHeight;
+
+            bitmap = new WriteableBitmap((int)width, (int)height, 96, 96, PixelFormats.Bgra32, null);
+
 
             CompositionTarget.Rendering += (o, e) =>
             {
