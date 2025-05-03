@@ -21,6 +21,7 @@ namespace Лаб1WpfApp1
             carcass,
             solid,
             phong,
+            textures,
         }
 
         DrawingState drawingState = DrawingState.carcass;
@@ -65,6 +66,9 @@ namespace Лаб1WpfApp1
                 } else if (drawingState == DrawingState.phong)
                 {
                     renderer.RenderPhong(bitmap, obj);
+                } else if (drawingState == DrawingState.textures)
+                {
+                    renderer.RenderTextures(bitmap, obj);
                 }
             }
 
@@ -147,6 +151,10 @@ namespace Лаб1WpfApp1
             if (e.Key == Key.D3)
             {
                 drawingState = DrawingState.phong;
+            }
+            if (e.Key == Key.D4)
+            {
+                drawingState = DrawingState.textures;
             }
 
             this.Draw();

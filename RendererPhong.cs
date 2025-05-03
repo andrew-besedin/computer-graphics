@@ -13,6 +13,7 @@ namespace Лаб1WpfApp1
         public Vector4 Position { get; set; }
         public Vector3 Normal { get; set; }
         public Vector3 CameraSpacePosition { get; set; }
+        public Vector2 Uv { get; set; }
 
         public static Vertex Lerp(Vertex a, Vertex b, float t)
         {
@@ -20,7 +21,8 @@ namespace Лаб1WpfApp1
             {
                 Position = Vector4.Lerp(a.Position, b.Position, t),
                 Normal = Vector3.Lerp(a.Normal, b.Normal, t),
-                CameraSpacePosition = Vector3.Lerp(a.CameraSpacePosition, b.CameraSpacePosition, t)
+                CameraSpacePosition = Vector3.Lerp(a.CameraSpacePosition, b.CameraSpacePosition, t),
+                Uv = Vector2.Lerp(a.Uv, b.Uv, t),
             };
         }
         public static Vertex operator +(Vertex lhs, Vertex rhs)
@@ -29,7 +31,8 @@ namespace Лаб1WpfApp1
             {
                 Position = lhs.Position + rhs.Position,
                 Normal = lhs.Normal + rhs.Normal,
-                CameraSpacePosition = lhs.CameraSpacePosition + rhs.CameraSpacePosition
+                CameraSpacePosition = lhs.CameraSpacePosition + rhs.CameraSpacePosition,
+                Uv = rhs.Uv + lhs.Uv,
             };
         }
         public static Vertex operator -(Vertex lhs, Vertex rhs)
@@ -38,7 +41,8 @@ namespace Лаб1WpfApp1
             {
                 Position = lhs.Position - rhs.Position,
                 Normal = lhs.Normal - rhs.Normal,
-                CameraSpacePosition = lhs.CameraSpacePosition - rhs.CameraSpacePosition
+                CameraSpacePosition = lhs.CameraSpacePosition - rhs.CameraSpacePosition,
+                Uv = lhs.Uv - rhs.Uv,
             };
         }
         public static Vertex operator *(Vertex lhs, float scalar)
@@ -47,7 +51,8 @@ namespace Лаб1WpfApp1
             {
                 Position = lhs.Position * scalar,
                 Normal = lhs.Normal * scalar,
-                CameraSpacePosition = lhs.CameraSpacePosition * scalar
+                CameraSpacePosition = lhs.CameraSpacePosition * scalar,
+                Uv = lhs.Uv * scalar,
             };
         }
         public static Vertex operator *(float scalar, Vertex rhs)
@@ -56,7 +61,8 @@ namespace Лаб1WpfApp1
             {
                 Position = rhs.Position * scalar,
                 Normal = rhs.Normal * scalar,
-                CameraSpacePosition = rhs.CameraSpacePosition * scalar
+                CameraSpacePosition = rhs.CameraSpacePosition * scalar,
+                Uv = rhs.Uv * scalar,
             };
         }
         public static Vertex operator /(Vertex lhs, float scalar)
@@ -65,7 +71,8 @@ namespace Лаб1WpfApp1
             {
                 Position = lhs.Position / scalar,
                 Normal = lhs.Normal / scalar,
-                CameraSpacePosition = lhs.CameraSpacePosition / scalar
+                CameraSpacePosition = lhs.CameraSpacePosition / scalar,
+                Uv = lhs.Uv / scalar,
             };
         }
     }
@@ -196,13 +203,13 @@ namespace Лаб1WpfApp1
 
             Vector3 ambient = ambientColor * ambientIntensity * diffuseColor;
 
-            Vector3 lightDir = -Vector3.Normalize(new(-1, -1, -1));
+            Vector3 lightDir = Vector3.Normalize(new(1, 1, 1));
 
 
-            Vector3 camDir = -Vector3.Normalize(input.CameraSpacePosition);
+            Vector3 camDir = Vector3.Normalize(input.CameraSpacePosition);
             Vector3 normal = Vector3.Normalize(input.Normal);
 
-            Vector3 reflectDir = Vector3.Reflect(-lightDir, normal);
+            Vector3 reflectDir = Vector3.Reflect(lightDir, normal);
             float diffuseFactor = Math.Max(Vector3.Dot(normal, lightDir), 0);
             Vector3 diffuse = diffuseColor * diffuseFactor * lightIntensity;
             float specularFactor = MathF.Pow(Math.Max(Vector3.Dot(reflectDir, camDir), 0), specularPower);
@@ -280,9 +287,6 @@ namespace Лаб1WpfApp1
                 0, -(float)height / 2, 0, 0,
                 0, 0, 1, 0,
                 leftCornerX + (float)width / 2, leftCornerY + (float)height / 2, 0, 1);
-
-
-            Matrix4x4 modelToProjection = worldTransformation * cameraTransformation;
 
             List<Face> faces = obj.faces;
             int facesCount = faces.Count;

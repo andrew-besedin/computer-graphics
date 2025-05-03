@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1OuKeZsbX4c=",
+  "dgSpecHash": "hkSeZdluxEE=",
   "success": true,
   "projectFilePath": "D:\\Универ Экспорт\\6 семестр\\АКГ\\Лаб1WPF\\Лаб1WpfApp1\\Лаб1WpfApp1.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Redmi\\.nuget\\packages\\sixlabors.imagesharp\\3.1.8\\sixlabors.imagesharp.3.1.8.nupkg.sha512"
+  ],
   "logs": []
 }

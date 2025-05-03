@@ -19,3 +19,6 @@ D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1
 D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Release\net8.0-windows\Лаб1WpfApp1.genruntimeconfig.cache
 D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Release\net8.0-windows\ref\Лаб1WpfApp1.dll
 D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Release\net8.0-windows\Лаб1WpfApp1.sourcelink.json
+D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\bin\Release\net8.0-windows\SixLabors.ImageSharp.dll
+D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Release\net8.0-windows\Лаб1WpfApp1.csproj.AssemblyReference.cache
+D:\Универ Экспорт\6 семестр\АКГ\Лаб1WPF\Лаб1WpfApp1\obj\Release\net8.0-windows\___1WpfA.8FDE0359.Up2Date

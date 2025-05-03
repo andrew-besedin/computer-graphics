@@ -1,6 +1,12 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Numerics;
+using System.Web;
+using System.Windows.Media.Media3D;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Лаб1WpfApp1
 {
@@ -9,6 +15,7 @@ namespace Лаб1WpfApp1
         public int[] vIndices;
         public int[]? nIndices;
         public int[]? tIndices;
+        public Material material;
 
         public Face(int[] vIndices)
         {
@@ -21,13 +28,197 @@ namespace Лаб1WpfApp1
         public List<Face> faces = new();
         public List<Vector3> normals = new();
         public List<Vector2> uvs = new();
+        public List<Material> materials = new();
         public Obj() { }
+    }
+
+    public struct ImageData
+    {
+        public Bgra32[] Pixels { get; }
+        public int Width { get; }
+        public int Height { get; }
+
+        public ImageData(Bgra32[] pixels, int width, int height)
+        {
+            Pixels = pixels;
+            Width = width;
+            Height = height;
+        }
+
+        public readonly Vector4 SampleNearest(Vector2 uv)
+        {
+            uv.X = float.Clamp(uv.X, 0, 1);
+            uv.Y = float.Clamp(1 - uv.Y, 0, 1);
+            int x = (int)MathF.Round((uv.X * (Width - 1)));
+            int y = (int)MathF.Round((uv.Y * (Height - 1)));
+            return Pixels[y * Width + x].ToScaledVector4();
+        }
+    }
+    public class Material
+    {
+        public string Name { get; set; } = "";
+        public float[] Ka { get; set; } = new float[3];
+        public float[] Kd { get; set; } = new float[3];
+        public float[] Ks { get; set; } = new float[3];
+        public float[] Ke { get; set; } = new float[3];
+        public float Ns { get; set; }
+        public float Ni { get; set; }
+        public float d { get; set; }
+        public int illum { get; set; }
+
+        public ImageData? Map_Ka { get; set; }
+        public ImageData? Map_Kd { get; set; }
+        public ImageData? Map_Ks { get; set; }
+        public ImageData? Map_Ns { get; set; }
+        public ImageData? Map_d { get; set; }
+        public ImageData? Map_Bump { get; set; }
+        public ImageData? Bump { get; set; }
+        public ImageData? Disp { get; set; }
+        public ImageData? Decal { get; set; }
     }
 
     public class Parser
     {
+        private static float[] ParseVector3(string[] parts)
+        {
+            var result = new float[3];
+            if (parts.Length >= 4)
+            {
+                float.TryParse(parts[1], NumberStyles.Float, CultureInfo.InvariantCulture, out result[0]);
+                float.TryParse(parts[2], NumberStyles.Float, CultureInfo.InvariantCulture, out result[1]);
+                float.TryParse(parts[3], NumberStyles.Float, CultureInfo.InvariantCulture, out result[2]);
+            }
+            return result;
+        }
+
+        private static string JoinRest(string[] parts)
+        {
+            return string.Join(' ', parts, 1, parts.Length - 1);
+        }
+
+        private static ImageData? LoadImage(string basePath, string relativePath)
+        {
+            string fullPath = Path.Combine(basePath, relativePath);
+            if (!File.Exists(fullPath))
+                return null;
+
+            using Image<Bgra32> image = Image.Load<Bgra32>(fullPath);
+            var pixels = new Bgra32[image.Width * image.Height];
+            image.CopyPixelDataTo(pixels);
+            return new ImageData(pixels, image.Width, image.Height);
+        }
+        public static Dictionary<string, Material> ParseMtlFile(string filename)
+        {
+            var materials = new Dictionary<string, Material>();
+            Material? currentMaterial = null;
+            string basePath = Path.GetDirectoryName(filename) ?? "";
+
+            using FileStream mtlFileStream = new(filename, FileMode.Open);
+            using StreamReader mtlSr = new(mtlFileStream);
+
+            while (!mtlSr.EndOfStream)
+            {
+                string? line = mtlSr.ReadLine();
+                if (string.IsNullOrWhiteSpace(line) || line.StartsWith("#"))
+                    continue;
+
+                string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length == 0)
+                    continue;
+
+                switch (parts[0].ToLower())
+                {
+                    case "newmtl":
+                        if (parts.Length > 1)
+                        {
+                            currentMaterial = new Material { Name = parts[1] };
+                            materials[currentMaterial.Name] = currentMaterial;
+                        }
+                        break;
+
+                    case "ka":
+                        currentMaterial!.Ka = ParseVector3(parts);
+                        break;
+
+                    case "kd":
+                        currentMaterial!.Kd = ParseVector3(parts);
+                        break;
+
+                    case "ks":
+                        currentMaterial!.Ks = ParseVector3(parts);
+                        break;
+
+                    case "ke":
+                        currentMaterial!.Ke = ParseVector3(parts);
+                        break;
+
+                    case "ns":
+                        if (currentMaterial != null && float.TryParse(parts[1], NumberStyles.Float, CultureInfo.InvariantCulture, out float ns))
+                            currentMaterial.Ns = ns;
+                        break;
+
+                    case "ni":
+                        if (currentMaterial != null && float.TryParse(parts[1], NumberStyles.Float, CultureInfo.InvariantCulture, out float ni))
+                            currentMaterial.Ni = ni;
+                        break;
+
+                    case "d":
+                        if (currentMaterial != null && float.TryParse(parts[1], NumberStyles.Float, CultureInfo.InvariantCulture, out float d))
+                            currentMaterial.d = d;
+                        break;
+
+                    case "illum":
+                        if (currentMaterial != null && int.TryParse(parts[1], out int illum))
+                            currentMaterial.illum = illum;
+                        break;
+
+                    case "map_ka":
+                        if (currentMaterial != null) currentMaterial.Map_Ka = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "map_kd":
+                        if (currentMaterial != null) currentMaterial.Map_Kd = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "map_ks":
+                        if (currentMaterial != null) currentMaterial.Map_Ks = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "map_ns":
+                        if (currentMaterial != null) currentMaterial.Map_Ns = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "map_d":
+                        if (currentMaterial != null) currentMaterial.Map_d = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "map_bump":
+                        if (currentMaterial != null) currentMaterial.Map_Bump = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "bump":
+                        if (currentMaterial != null) currentMaterial.Bump = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "disp":
+                        if (currentMaterial != null) currentMaterial.Disp = LoadImage(basePath, JoinRest(parts));
+                        break;
+
+                    case "decal":
+                        if (currentMaterial != null) currentMaterial.Decal = LoadImage(basePath, JoinRest(parts));
+                        break;
+                }
+            }
+
+            return materials;
+        }
+
         public static Obj ParseObjFile(string filePath)
         {
+            Dictionary<string, Material> materialsBuf = new();
+
+            string vertexMaterialNameBuf = null;
+
             Obj obj = new();
             using FileStream fileStream = new(filePath, FileMode.Open);
             using StreamReader sr = new(fileStream);
@@ -41,6 +232,16 @@ namespace Лаб1WpfApp1
                 string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 switch (parts[0])
                 {
+                    case "mtllib":
+                        {
+                            var dirPath = Path.GetDirectoryName(filePath);
+
+                            var mtlFileLink = HttpUtility.UrlDecode(parts[1]);
+                            var parsedMaterials = ParseMtlFile(Path.Combine(dirPath, mtlFileLink));
+
+                            parsedMaterials.ToList().ForEach(material => materialsBuf[material.Key] = material.Value);
+                        }
+                        break;
                     case "v":
                         {
                             Vector3 newVertex;
@@ -57,6 +258,10 @@ namespace Лаб1WpfApp1
                         break;
                     case "f":
                         {
+                            if (vertexMaterialNameBuf == null)
+                            {
+                                throw new ArgumentNullException("Face declaration reached before usemtl declaration.");
+                            }
                             int[,] indices = new int[parts.Length - 1, 3];
                             string[] faceParts = parts[1].Split('/');
                             bool hasTextureIndices = faceParts.Length > 1 && faceParts[1].Length > 0;
@@ -77,18 +282,15 @@ namespace Лаб1WpfApp1
                                     normals[i - 1] = int.Parse(faceParts[2], NumberStyles.Integer, CultureInfo.InvariantCulture) - 1;
                                 }
                             }
-                            for (int i = 0; i < vertices.Length - 2; i++)
+
+                            Face newFace = new(vertices)
                             {
-                                int[] triangleVertices = [vertices[0], vertices[i + 1], vertices[i + 2]];
-                                int[]? triangleTextures = hasTextureIndices ? [textures![0], textures[i + 1], textures[i + 2]] : null;
-                                int[]? triangleNormals = hasNormalIndices ? [normals![0], normals[i + 1], normals[i + 2]] : null;
-                                Face newFace = new(triangleVertices)
-                                {
-                                    nIndices = triangleNormals,
-                                    tIndices = triangleTextures,
-                                };
-                                obj.faces.Add(newFace);
-                            }
+                                nIndices = normals,
+                                tIndices = textures,
+                                material = materialsBuf[vertexMaterialNameBuf]
+                            };
+                            obj.faces.Add(newFace);
+
 
                         }
                         break;
@@ -102,6 +304,19 @@ namespace Лаб1WpfApp1
                         newNormal = Vector3.Normalize(newNormal);
 
                         obj.normals.Add(newNormal);
+                    }
+                    break;
+                    case "vt":
+                    {
+                        Vector2 newTextureCoord;
+                        newTextureCoord.X = Single.Parse(parts[1], NumberStyles.Float, CultureInfo.InvariantCulture);
+                        newTextureCoord.Y = Single.Parse(parts[2], NumberStyles.Float, CultureInfo.InvariantCulture);
+                        obj.uvs.Add(newTextureCoord);
+                    }
+                    break;
+                    case "usemtl":
+                    {
+                        vertexMaterialNameBuf = parts[1];
                     }
                     break;
                     case "#":
