@@ -152,7 +152,7 @@ namespace Лаб1WpfApp1
 
             float aspectRatio = (float)width / height;
             float fovVertical = MathF.PI / 3 / aspectRatio;
-            float nearPlaneDistance = 0.01f;
+            float nearPlaneDistance = 1f;
             float farPlaneDistance = float.PositiveInfinity;
             float zCoeff = (float.IsPositiveInfinity(farPlaneDistance) ? -1f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance));
 

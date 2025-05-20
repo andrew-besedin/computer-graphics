@@ -62,7 +62,7 @@ namespace Лаб1WpfApp1
         public float[] Ks { get; set; } = new float[3];
         public float[] Ke { get; set; } = new float[3];
         public float Ns { get; set; }
-        public float Ni { get; set; }
+        public float Ni { get; set; } = 50f;
         public float d { get; set; }
         public int illum { get; set; }
 

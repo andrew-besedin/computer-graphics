@@ -122,7 +122,7 @@ namespace Лаб1WpfApp1
                 Vertex lineInterpolant = leftPoint + xPrestep * dLineInterpolant;
                 for (int x = xStart; x < xEnd; x++, lineInterpolant += dLineInterpolant)
                 {
-                    float z = lineInterpolant.Position.Z;
+                    float z = -lineInterpolant.Position.W;
 
                     if (zbuffer.TestAndSet(x, y, z))
                     {
@@ -151,7 +151,6 @@ namespace Лаб1WpfApp1
             float ambientIntensity = 0.2f;
             var lightColor = new Vector3(1);
             var ambientColor = new Vector3(1);
-            float specularPower = 50f;
             float lightIntensity = 0.8f;
 
 
@@ -183,7 +182,12 @@ namespace Лаб1WpfApp1
             if (currentMaterial.Map_Ks != null)
             {
                 specularCoef = ToVector3(currentMaterial.Map_Ks.Value.SampleNearest(input.Uv));
+            } else if (currentMaterial.Ks != null)
+            {
+                specularCoef = new Vector3(currentMaterial.Ks);
             }
+
+            float specularPower = currentMaterial.Ni;
 
 
             Vector3 ambient = ambientColor * ambientIntensity * diffuseColor;
