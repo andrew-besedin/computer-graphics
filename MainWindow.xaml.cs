@@ -14,6 +14,7 @@ namespace Лаб1WpfApp1
     public partial class MainWindow : Window
     {
         Obj? obj = null;
+        CubeMappingTextures? cubeMappingTextures = null;
         Renderer renderer = new Renderer();
 
         enum DrawingState
@@ -68,7 +69,7 @@ namespace Лаб1WpfApp1
                     renderer.RenderPhong(bitmap, obj);
                 } else if (drawingState == DrawingState.textures)
                 {
-                    renderer.RenderTextures(bitmap, obj);
+                    renderer.RenderTextures(bitmap, obj, cubeMappingTextures);
                 }
             }
 
@@ -190,6 +191,21 @@ namespace Лаб1WpfApp1
                     renderer.cameraAngleX += 0.1f;
                 }
             };
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filename = openFileDialog.FileName;
+
+                var cubeMappingTextures = new CubeMappingTextures(filename);
+
+                this.cubeMappingTextures = cubeMappingTextures;
+
+                this.Draw();
+            }
         }
     }
 }

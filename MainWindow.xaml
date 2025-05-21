@@ -16,5 +16,6 @@
         <Image x:Name="image" />
         <Button Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Content="Load..." Click="Button_Click" />
         <Label x:Name="fpsLabel" Foreground="White" Content="FPS" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" />
+        <Button HorizontalAlignment="Left" Margin="133,11,0,0" VerticalAlignment="Top" Height="40" Width="103" Content="Cube Mapping..." Click="Button_Click_1"/>
     </Grid>
 </Window>

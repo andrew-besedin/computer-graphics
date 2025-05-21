@@ -130,6 +130,20 @@ namespace Лаб1WpfApp1
             return view;
         }
 
+        private Vector3 GetCameraWorldPos()
+        {
+            (float sinX, float cosX) = MathF.SinCos(DegreesToRadians(cameraAngleX));
+            (float sinY, float cosY) = MathF.SinCos(DegreesToRadians(cameraAngleY));
+
+            var eye = new Vector3();
+
+            eye.X = (cosX * cosY * cameraSphereRadius);
+            eye.Z = (sinX * cosY * cameraSphereRadius);
+            eye.Y = (sinY * cameraSphereRadius);
+
+            return eye;
+        }
+
         public void render(WriteableBitmap bitmap, Obj obj)
         {
             ResizeBuffer(obj);

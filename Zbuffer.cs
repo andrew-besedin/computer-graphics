@@ -49,5 +49,9 @@
                 return false;
             }
         }
+        public float GetBufferValue(int x, int y)
+        {
+            return buffer[y * width + x];
+        }
     }
 }

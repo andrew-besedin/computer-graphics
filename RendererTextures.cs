@@ -5,12 +5,15 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 
 namespace Лаб1WpfApp1
 {
     partial class Renderer
     {
+        CubeMappingTextures? cubeMappingTextures;
         Material currentMaterial;
 
         private Vector4 ToCameraSpace(Vector4 vector)
@@ -198,10 +201,19 @@ namespace Лаб1WpfApp1
             Vector3 camDir = Vector3.Normalize(input.CameraSpacePosition);
 
             Vector3 reflectDir = Vector3.Reflect(lightDir, normal);
+
+            Matrix4x4.Invert(this.GetCameraTransformation(), out Matrix4x4 invCameraTransform);
+
+            Vector3 cameraReflectDir = Vector3.TransformNormal(Vector3.Reflect(camDir, normal), invCameraTransform);
+
+            var reflectColor = cubeMappingTextures != null
+                ? ToVector3(cubeMappingTextures.SampleBackground(cameraReflectDir))
+                : lightColor;
+
             float diffuseFactor = Math.Max(Vector3.Dot(normal, lightDir), 0);
             Vector3 diffuse = diffuseColor * diffuseFactor * lightIntensity;
             float specularFactor = MathF.Pow(Math.Max(Vector3.Dot(reflectDir, camDir), 0), specularPower);
-            Vector3 specular = lightColor * specularFactor * specularCoef;
+            Vector3 specular = reflectColor * specularFactor * specularCoef;
             Vector3 finalColor = Vector3.Clamp(ambient + diffuse + specular, Vector3.Zero, new Vector3(1, 1, 1));
             uint color = (uint)0xFF << 24
                          | (uint)(finalColor.X * 0xFF) << 16
@@ -234,8 +246,68 @@ namespace Лаб1WpfApp1
             return vertex;
         }
 
-        public void RenderTextures(WriteableBitmap bitmap, Obj obj)
+        private void FillBackground()
         {
+            if (cubeMappingTextures == null)
+            {
+                return;
+            }
+
+            for (int y = 0; y < screenHeight; y++)
+            {
+                for (int x = 0; x < screenWidth; x++)
+                {
+                    Matrix4x4.Invert(this.GetProjectionTransform(), out Matrix4x4 invProjectionTransform);
+                    Matrix4x4.Invert(this.GetCameraTransformation(), out Matrix4x4 invCameraTransform);
+
+
+                    Vector3 rayOrigin = this.GetCameraWorldPos();
+                    Vector3 farNdc = new Vector3(((float)x / screenWidth) * 2.0f - 1.0f,
+                        1.0f - ((float)y / screenHeight) * 2.0f, 0.999f);
+                    Vector4 farView = Vector4.Transform(new Vector4(farNdc, 1), invProjectionTransform);
+                    farView /= farView.W;
+                    farView = Vector4.Transform(farView, invCameraTransform);
+                    Vector3 rayDirection = Vector3.Normalize(ToVector3(farView) - rayOrigin);
+
+                    var pixelColor = ToVector3(cubeMappingTextures.SampleBackground(rayDirection));
+
+                    uint color = (uint)(0xFF) << 24
+                        | (uint)(pixelColor.X * 0xFF) << 16
+                        | (uint)(pixelColor.Y * 0xFF) << 8
+                        | (uint)(pixelColor.Z * 0xFF);
+
+                    unsafe
+                    {
+                        uint* rawPointer = (uint*)bitmapDataPtr;
+                        var index = y * screenWidth + x;
+                        rawPointer[index] = color;
+                    }
+                }
+            }
+        }
+
+        private Matrix4x4 GetProjectionTransform()
+        {
+            float aspectRatio = (float)screenWidth / screenHeight;
+            float fovVertical = MathF.PI / 3 / aspectRatio;
+            float nearPlaneDistance = 0.01f;
+            float farPlaneDistance = float.PositiveInfinity;
+            float zCoeff = (float.IsPositiveInfinity(farPlaneDistance) ? -1f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance));
+
+            Matrix4x4 projectionTransform = new Matrix4x4(
+                1 / MathF.Tan(fovVertical * 0.5f) / aspectRatio, 0, 0, 0,
+                0, 1 / MathF.Tan(fovVertical * 0.5f), 0, 0,
+                0, 0, zCoeff, -1,
+                0, 0, zCoeff * nearPlaneDistance, 0
+            );
+
+            return projectionTransform;
+        }
+
+        public void RenderTextures(WriteableBitmap bitmap, Obj obj, CubeMappingTextures? cubeMappingTextures)
+        {
+            this.cubeMappingTextures = cubeMappingTextures;
+
             ResizeBuffer(obj);
 
             int width = bitmap.PixelWidth;
@@ -255,21 +327,15 @@ namespace Лаб1WpfApp1
 
             int stride = bitmap.BackBufferStride;
 
+            if (cubeMappingTextures != null)
+            {
+                this.FillBackground();
+            }
+
 
             var cameraTransformation = this.GetCameraTransformation();
 
-            float aspectRatio = (float)width / height;
-            float fovVertical = MathF.PI / 3 / aspectRatio;
-            float nearPlaneDistance = 0.01f;
-            float farPlaneDistance = float.PositiveInfinity;
-            float zCoeff = (float.IsPositiveInfinity(farPlaneDistance) ? -1f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance));
-
-            Matrix4x4 projectionTransform = new Matrix4x4(
-                1 / MathF.Tan(fovVertical * 0.5f) / aspectRatio, 0, 0, 0,
-                0, 1 / MathF.Tan(fovVertical * 0.5f), 0, 0,
-                0, 0, zCoeff, -1,
-                0, 0, zCoeff * nearPlaneDistance, 0
-            );
+            var projectionTransform = this.GetProjectionTransform();
 
             float leftCornerX = 0;
             float leftCornerY = 0;
